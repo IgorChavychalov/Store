@@ -8,8 +8,25 @@
 </head>
 <body>
 <header>
-    <div class="logo">E-shop</div>
-    <button class="btn-cart" type="button">Корзина</button>
+    <div class="header">
+        E-shop
+        <button class="btn-cart" type="button">Корзина</button>
+    </div>
+    <div class="cart">
+        <div class="cart-item">
+            <img src="img/default.png" alt="">
+            <p>Название</p>
+            <div class="counter">12</div>
+            <button>Удалить</button>
+        </div>
+        <div class="cart-item">
+            <img src="img/default.png" alt="">
+            <p>Название dfdfgh</p>
+            <div class="counter">1</div>
+            <button>Удалить</button>
+        </div>
+    </div>
+
 </header>
 <main>
     <!--beforebegin-->
@@ -21,5 +38,14 @@
     <!--afterend-->
 </main>
 <script defer src="js/main.js"></script>
+<script>
+    const btn = document.querySelector('.btn-cart');
+
+    btn.addEventListener('click', () => {
+      let status = document.querySelector('.cart').style;
+      status.display === 'block' ? status.display = 'none': status.display = 'block';
+    })
+
+</script>
 </body>
 </html>

@@ -1,22 +1,41 @@
+const API = `https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses`;
+// let getRequest = (url, cb) => {
+//     let xhr = new XMLHttpRequest();
+//     // window.ActiveXObject -> xhr = new ActiveXObject()
+//     xhr.open('GET', url, true);
+//     xhr.onreadystatechange = () => {
+//         if(xhr.readyState === 4) {
+//             if (xhr.status !== 200){
+//                 console.log('error')
+//             } else {
+//                 cb(xhr.responseText)
+//             }
+//         }
+//     }
+// }
+
 class Products {
     constructor(container='.products') {
         this.container = container;
         this.data = [];
         this.allProducts = [];
-    }
-    init(){
-        this._fetchGoods();
-        this._render();
-        console.log(this._totalCostProducts());
+        this._fetchGoods()
+            .then(() => this._render())
     }
     _fetchGoods(){
-        this.data = [
-            {id: 1, title: 'Notebook', price: 2000},
-            {id: 2, title: 'Keyboard', price: 70},
-            {id: 3, title: 'Mouse', price: 46},
-            {id: 4, title: 'Gamepad', price: 68},
-            {id: 5, title: 'Chair', price: 168},
-        ];
+        return fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .then(data => {
+                this.data = [...data];
+            })
+            .catch(error => console.log(error));
+    }
+    calcSum(){
+        // let result = 0;
+        // for (let prod of this.allProducts) {
+        //     result += prod.price;
+        // }
+        return this.allProducts.reduce((accum, el) => accum + el.price, 0)
     }
     _render(){
         const block = document.querySelector(this.container);
@@ -26,76 +45,34 @@ class Products {
             block.insertAdjacentHTML('beforeend', product.render());
         }
     }
-		// ДЗ
-    _totalCostProducts() {
-        let total = 0;
-        for (let elem of this.data) {
-            total += parseInt(elem.price);
-        }
-				return total;
-    }
 }
 
 class ProductItem {
     constructor(product, img="img/default.png") {
         this.price = product.price;
-        this.title = product.title;
-        this.id = product.id;
+        this.product_name = product.product_name;
+        this.id_product = product.id_product;
         this.img = img
     }
     render(){
         return `<div class="product-item">
-                 <img src="${this.img}" alt="${this.title}">
+                 <img src="${this.img}" alt="${this.product_name}">
                  <div class="desc">
-                     <h3>${this.title}</h3>
+                     <h3>${this.product_name}</h3>
                      <p>${this.price}</p>
-                     <button class="buy-btn" data-id="${this.id}">Купить</button>
+                     <button class="buy-btn">Купить</button>
                  </div>
              </div>`
     }
 }
 
+const products = new Products();
+console.log(products.calcSum());
 
-// ДЗ
+
 class Cart {
-    constructor(container='.buy-btn'){
-        this.backetProducts = [];
-        this.container = container;
-        this.init();
+    constructor(){
+        // this.some здесь будет что-то
     }
-
-    init() {
-        const buttons = document.querySelectorAll(this.container);
-        for (const elem of buttons) {
-            elem.addEventListener('click', event => this.clickBuy(event));
-        }
-
-    }
-
-    clickBuy(event) {
-        const id = event.target.dataset.id;
-				this.addProduct(id);
-
-    }
-
-    addProduct(id) {
-        const product = new Products();
-        product._fetchGoods();
-        const selectProduct = product.data;
-        for (const elem of selectProduct) {
-            if (elem.id == id) {
-                this.backetProducts.push(elem);
-            }
-        }
-        console.log(selectProduct);
-
-    }
-
-    removeProduct() {}
-
-    confirm() {}
-
+    // some(){} - делает что-то
 }
-
-const products = new Products().init();
-const backet = new Cart();
