@@ -1,75 +1,101 @@
-const products = [
-  {id: 1, title: 'Notebook', price: 2000},
-  {id: 2, title: 'Keyboard', price: 70},
-  {id: 3, title: 'Mouse', price: 46},
-  {id: 4, title: 'Gamepad', price: 68},
-  {id: 5, title: 'Chair', price: 168},
-  {id: 6, title: '', price: ''},
+class Products {
+    constructor(container='.products') {
+        this.container = container;
+        this.data = [];
+        this.allProducts = [];
+    }
+    init(){
+        this._fetchGoods();
+        this._render();
+        console.log(this._totalCostProducts());
+    }
+    _fetchGoods(){
+        this.data = [
+            {id: 1, title: 'Notebook', price: 2000},
+            {id: 2, title: 'Keyboard', price: 70},
+            {id: 3, title: 'Mouse', price: 46},
+            {id: 4, title: 'Gamepad', price: 68},
+            {id: 5, title: 'Chair', price: 168},
+        ];
+    }
+    _render(){
+        const block = document.querySelector(this.container);
+        for (let el of this.data) {
+            const product = new ProductItem(el);
+            this.allProducts.push(product);
+            block.insertAdjacentHTML('beforeend', product.render());
+        }
+    }
+		// ДЗ
+    _totalCostProducts() {
+        let total = 0;
+        for (let elem of this.data) {
+            total += parseInt(elem.price);
+        }
+				return total;
+    }
+}
 
-];
-
-const renderProduct = (title, price) => {
-	if (title && price) {
-	  return `<div class="product-item"><img class="product-img" src="img/default.png">
-	        <h3>${title}</h3>
-	        <p>${price}</p>
-	        <button class="buy-btn btn">Купить</button>
-	    </div>`;
-	}
-	return `<div class="product-item"><img class="product-img" src="img/default.png">
-	        <h3>товар</h3>
-	        <p>цена</p>
-	        <button class="buy-btn btn">Купить</button>
-	   </div>`;
-};
-
-const renderPage = list => {
-  const productList = list.map(item => renderProduct(item.title, item.price));
-  // ЗАПЯТЫЕ - РАЗДЕЛИТЕЛЬ КОЛЕКЦИИ
-  // ПОЧЕМУ ОНИ ВЫВОДЯТЬСЯ ТАК И НЕ ПОНЯЛ
-  document.querySelector(`.products`).innerHTML = productList.join('');
-};
-
-renderPage(products);
+class ProductItem {
+    constructor(product, img="img/default.png") {
+        this.price = product.price;
+        this.title = product.title;
+        this.id = product.id;
+        this.img = img
+    }
+    render(){
+        return `<div class="product-item">
+                 <img src="${this.img}" alt="${this.title}">
+                 <div class="desc">
+                     <h3>${this.title}</h3>
+                     <p>${this.price}</p>
+                     <button class="buy-btn" data-id="${this.id}">Купить</button>
+                 </div>
+             </div>`
+    }
+}
 
 
+// ДЗ
+class Cart {
+    constructor(container='.buy-btn'){
+        this.backetProducts = [];
+        this.container = container;
+        this.init();
+    }
 
-//==ПЫТАЛСЯ РЕАЛИЗОВАТЬ renderProduct с ипользованием объекта, но получал undefined===========
+    init() {
+        const buttons = document.querySelectorAll(this.container);
+        for (const elem of buttons) {
+            elem.addEventListener('click', event => this.clickBuy(event));
+        }
 
+    }
 
-//const products = [
-//  {id: 1, title: 'Notebook', price: 2000},
-//  {id: 2, title: 'Keyboard', price: 70},
-//  {id: 3, title: 'Mouse', price: 46},
-//  {id: 4, title: 'Gamepad', price: 68},
-//  {id: 5, title: 'Chair', price: 168},
-//];
-//
-//let productDiv = {
-//	divClass: 'product-item',
-//	imgСlass: 'product-img',
-//	titleDefault: 'title',
-//	priceDefault: 'price',
-//	imgDefault: "img/default.png",
-//
-//	render() {
-//		`<div class=${this.divClass}><img class=${this.imgСlass} src=${this.imgDefault}>
-//        <h3>${this.titleDefault}</h3>
-//        <p>${this.priceDefault}</p>
-//        <button class="buy-btn btn">Купить</button>
-//    </div>`;
-//	}
-//}
-//const renderProduct = (title, price) => {
-//	div = productDiv
-//	div.titleDefault = title;
-//	div.priceDefault = price;
-//  return `${div.render()}`
-//};
-//
-//const renderPage = list => {
-//  const productList = list.map(item => renderProduct(item.title, item.price));
-//  document.querySelector(`.products`).innerHTML = productList.join('');
-//};
-//
-//renderPage(products);
+    clickBuy(event) {
+        const id = event.target.dataset.id;
+				this.addProduct(id);
+
+    }
+
+    addProduct(id) {
+        const product = new Products();
+        product._fetchGoods();
+        const selectProduct = product.data;
+        for (const elem of selectProduct) {
+            if (elem.id == id) {
+                this.backetProducts.push(elem);
+            }
+        }
+        console.log(selectProduct);
+
+    }
+
+    removeProduct() {}
+
+    confirm() {}
+
+}
+
+const products = new Products().init();
+const backet = new Cart();
