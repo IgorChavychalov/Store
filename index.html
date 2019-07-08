@@ -10,7 +10,7 @@
 <header>
     <div class="header">
         E-shop
-        <button class="btn-cart" type="button">Корзина</button>
+        <button class="cart-btn" type="button">Корзина</button>
     </div>
     <div class="cart">
         <div class="cart-item">
@@ -39,12 +39,12 @@
 </main>
 <script defer src="js/main.js"></script>
 <script>
-    const btn = document.querySelector('.btn-cart');
+    const cartBtn = document.querySelector('.cart-btn');
 
-    btn.addEventListener('click', () => {
+    cartBtn.addEventListener('click', () => {
       let status = document.querySelector('.cart').style;
       status.display === 'block' ? status.display = 'none': status.display = 'block';
-    })
+    });
 
 </script>
 </body>
