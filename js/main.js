@@ -20,7 +20,9 @@ class Products {
         this.data = [];
         this.allProducts = [];
         this._fetchGoods()
-            .then(() => this._render())
+            .then(() => this._render());
+
+        this._buyBtnListner();
     }
     _fetchGoods(){
         return fetch(`${API}/catalogData.json`)
@@ -31,10 +33,6 @@ class Products {
             .catch(error => console.log(error));
     }
     calcSum(){
-        // let result = 0;
-        // for (let prod of this.allProducts) {
-        //     result += prod.price;
-        // }
         return this.allProducts.reduce((accum, el) => accum + el.price, 0)
     }
     _render(){
@@ -45,6 +43,30 @@ class Products {
             block.insertAdjacentHTML('beforeend', product.render());
         }
     }
+
+    _buyBtnListner() {
+        const buttons = document.querySelector(this.container).addEventListener('click', e => {
+            if (e.target.classList.contains("buy-btn")) {
+                this.clickBuy(e);
+            }
+        });
+    }
+
+    clickBuy(event) {
+        const id_product = event.target.dataset.id;
+        for (const elem of this.allProducts) {
+            if (elem.id_product === +id_product) {
+                this.addProduct(elem);
+            }
+        }
+    }
+
+    addProduct(product) {
+        const conteiner = '.cart';
+        const basket = document.querySelector(conteiner);
+        basket.insertAdjacentHTML('beforeend', product.renderInBasket());
+    }
+
 }
 
 class ProductItem {
@@ -75,44 +97,6 @@ class ProductItem {
 
 }
 
-class BacketItem {
-    constructor(product, img="img/default.png") {
-        this.product_name = product.product_name;
-        this.id_product = product.id_product;
-        this.img = img;
-    }
-    render() {
-        return `<div class="cart-item">
-                    <img src="${this.img}" alt="${this.img}">
-                    <p>"${this.img}"</p>
-                    <div class="counter">1</div>
-                    <button>Удалить</button>
-                </div>`
-    }
-}
 
 const products = new Products();
 console.log(products.calcSum());
-
-
-class Cart {
-    constructor(container='.cart') {
-        this.container = container;
-        this._init();
-
-    }
-    _init() {
-        const buyBtns = document.querySelectorAll('.buy-btn');
-        for (const btn of buyBtns) {
-            btn.addEventListener('click', (event) => {
-
-            })
-        }
-    }
-    addProductToBasket() {
-        console.log('111');
-    }
-
-}
-
-const cart = new Cart();
