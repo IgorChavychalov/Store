@@ -1,0 +1,36 @@
+.form {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    margin: 10% 28% 1% 28%;
+}
+input {
+    margin: 25px 25px 4px 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    height: 25px;
+    border-color: #15e015;
+}
+
+.text-box {
+    margin: 25px 25px 4px 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    /*height: 25px;*/
+    border-color: #15e015;
+}
+
+button {
+    margin-left: 28%;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    height: 30px;
+    background-color: blue;
+    color: white;
+}
+
+.alert-input {
+    border-color: red;
+}
