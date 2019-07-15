@@ -7,55 +7,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="app">
 <header>
     <div class="header">
         E-shop
-        <button class="cart-btn" type="button">Корзина</button>
+        <button class="cart-btn" v-on:click="show = !show">Корзина</button>
+<!--        <button class="cart-btn" @click="show = !show">Корзина</button>-->
     </div>
-    <div class="cart">
-<!--        <div class="cart-item">-->
-<!--            <img src="img/default.png" alt="">-->
-<!--            <p>Название</p>-->
-<!--            <div class="counter">12</div>-->
-<!--            <button>Удалить</button>-->
-<!--        </div>-->
-<!--        <div class="cart-item">-->
-<!--            <img src="img/default.png" alt="">-->
-<!--            <p>Название dfdfgh</p>-->
-<!--            <div class="counter">1</div>-->
-<!--            <button>Удалить</button>-->
-<!--        </div>-->
+    <div class="cart" v-show="show">
+
     </div>
 
 </header>
+
 <main>
-    <!--beforebegin-->
     <div class="products">
-        <!--afterbegin-->
-        <!--<p></p>-->
-        <!--beforeend-->
+         <div class="product-item" v-for="el of products" :key="el.id_product">
+              <img :src="imgCatalog" :alt="el.product_name">
+              <div class="desc">
+                  <h3>{{el.product_name}}</h3>
+                  <p>{{el.price}}</p>
+                  <button class="buy-btn" @click="addProduct(el)">Купить</button>
+              </div>
+         </div>
     </div>
-    <!--afterend-->
 </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script defer src="js/main.js"></script>
-<script>
-    const cartBtn = document.querySelector('.cart-btn');
-
-    cartBtn.addEventListener('click', () => {
-      let status = document.querySelector('.cart').style;
-      status.display === 'block' ? status.display = 'none': status.display = 'block';
-    });
-
-    // эта байда не работает
-    window.onload = function() {
-      const buttons = document.querySelectorAll(".buy-btn");
-        for (const elem of buttons) {
-            elem.addEventListener('click', event => {
-              alert('ddd');
-            });
-        }
-    }
-
-</script>
 </body>
 </html>
