@@ -15,7 +15,12 @@
 <!--        <button class="cart-btn" @click="show = !show">Корзина</button>-->
     </div>
     <div class="cart" v-show="show">
-
+        <div class="cart-item" v-for="el of cartProducts" :key="el.id_product" :id="el.id_product">
+            <img :src="imgCatalog" alt="el.product_name">
+            <p>{{el.product_name}}</p>
+            <div class="counter">{{el.quantity}}</div>
+            <button @click="removeCartProduct(el)" >Удалить</button>
+        </div>
     </div>
 
 </header>

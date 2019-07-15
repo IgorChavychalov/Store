@@ -16,11 +16,34 @@ const app = new Vue({
         .then(result => result.json())
         .catch(error => console.log(error));
     },
-    addProduct(el){
-      this.cartProducts.push(el);
 
+    getTtem(id, thisCatalog){
+      return thisCatalog.find(elm => elm.id_product === id)
     },
+
+    addProduct(el){
+      const product = this.getTtem(el.id_product, this.cartProducts);
+      if (!product) {
+        elem = {...el};
+        elem.quantity = 1;
+        this.cartProducts.push(elem);
+      } else {
+        product.quantity++;
+      }
+    },
+
+    removeCartProduct(el){
+      const product = this.getTtem(el.id_product, this.cartProducts);
+      if (product.quantity > 1) {
+        product.quantity--;
+      } else {
+        this.cartProducts.splice(this.cartProducts.indexOf(product), 1);
+        document.getElementById(`${product.id_product}`).remove();
+        console.log(this.cartProducts);
+      }
+    }
   },
+
   mounted(){
     this.getJson(`${API + this.catalogUrl}`)
       .then(data => {
