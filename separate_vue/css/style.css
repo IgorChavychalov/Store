@@ -11,6 +11,10 @@
   border-radius: 10px 10px 10px 10px;
 }
 
+.btn-cart {
+  margin-left: auto;
+}
+
 .cart-btn {
   border-radius: 30%;
   height: 30px;
@@ -36,9 +40,17 @@
   padding-left: 0px;
 }
 
+.open-btn {
+  width: 300px;
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .counter {
+  margin-right: 6px;
   font-size: 18px;
-  width: 30px;
+  width: 60px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid #d8b415;
