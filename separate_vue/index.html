@@ -8,14 +8,11 @@
 <body>
 <div id="app">
 <header>
-    <div class="header">E-shop</div>
-    <div class="cart">
-        <form action="#" method="post" class="search-form" @submit.prevent="filter">
-            <input type="text" class="search-field" v-model="userSearch">
-            <button class="btn-search" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
+    <div class="header">
+        E-shop
+        <search ref="search"></search>
+    </div>
+    <div>
         <cart ref="cart"></cart>
     </div>
 </header>
@@ -27,6 +24,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/ProductsComp.js"></script>
 <script src="js/CartComp.js"></script>
+<script src="js/Search.js"></script>
 <script defer src="js/main.js"></script>
 </body>
 </html>

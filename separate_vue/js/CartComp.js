@@ -45,7 +45,7 @@ Vue.component('cart', {
   },
   template: `<div>
                 <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
-                <div class="cart-block" v-show="showCart">
+                <div class="cart" v-show="showCart">
                     <p v-if="!cartItems.length">Cart is empty</p>
                      <cart-item 
                      v-for="item of cartItems" 
