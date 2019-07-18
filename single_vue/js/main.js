@@ -51,7 +51,7 @@ const app = new Vue({
           this.products.push(el);
         }
       });
-    this.getJson(`getProducts.json`)
+    this.getJson(`../getProducts.json`)
       .then(data => {
         for(let el of data){
           this.products.push(el);

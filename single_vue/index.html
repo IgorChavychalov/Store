@@ -11,8 +11,7 @@
 <header>
     <div class="header">
         E-shop
-        <button class="cart-btn" v-on:click="show = !show">Корзина</button>
-<!--        <button class="cart-btn" @click="show = !show">Корзина</button>-->
+        <button class="cart-btn" @click="show = !show">Корзина</button>
     </div>
     <div class="cart" v-show="show">
         <div class="cart-item" v-for="el of cartProducts" :key="el.id_product" :id="el.id_product">
