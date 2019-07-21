@@ -36,7 +36,7 @@ Vue.component('cart', {
     },
   },
   mounted() {
-    this.$parent.getJson(`${API + this.cartUrl}`)
+    this.$parent.getJson(`/api/cart`)
       .then(data => {
         for(let el of data.contents){
           this.cartItems.push(el);
