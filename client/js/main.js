@@ -30,7 +30,7 @@ const app = new Vue({
       })
         .then(result => result.json())
         .catch(error => this.$refs.error.setText(error));
-    },
-  },
+    }
+  }
 
 });
