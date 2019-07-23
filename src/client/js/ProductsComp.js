@@ -1,4 +1,15 @@
-Vue.component('products', {
+const product = {
+  props: ['product', 'img'],
+  template: `<div class="product-item">
+                  <img :src="img" :alt="product.product_name">
+                  <div class="desc">
+                      <h3>{{product.product_name}}</h3>
+                      <p>{{product.price}}</p>
+                      <button class="buy-btn" @click="$root.$refs.cart.addProduct(product)">Купить</button>
+                  </div>
+              </div>`
+};
+export const products = {
   data(){
     return {
       catalogUrl: '/catalogData.json',
@@ -6,6 +17,9 @@ Vue.component('products', {
       filtered: [],
       imgCatalog: 'img/default.png',
     }
+  },
+  components: {
+    product
   },
   methods: {
     filter(userSearch){
@@ -25,18 +39,6 @@ Vue.component('products', {
   template: `<div class="products">
                 <product v-for="el of filtered" :key="el.id_product" :product="el" :img="imgCatalog"></product>
             </div>`
-});
-
-Vue.component('product', {
-  props: ['product', 'img'],
-  template: `<div class="product-item">
-                  <img :src="img" :alt="product.product_name">
-                  <div class="desc">
-                      <h3>{{product.product_name}}</h3>
-                      <p>{{product.price}}</p>
-                      <button class="buy-btn" @click="$root.$refs.cart.addProduct(product)">Купить</button>
-                  </div>
-              </div>`
-});
+};
 
 

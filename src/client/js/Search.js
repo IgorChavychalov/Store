@@ -1,4 +1,4 @@
-Vue.component('search', {
+export const search = {
   data(){
     return {
       userSearch: '',
@@ -11,4 +11,4 @@ Vue.component('search', {
         </form>`
 
 
-});
+};

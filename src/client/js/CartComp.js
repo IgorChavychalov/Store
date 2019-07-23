@@ -1,4 +1,15 @@
-Vue.component('cart', {
+const cartItem = {
+    props: ['cartItem', 'img'],
+    template: `<div class="cart-item">
+                    <img :src="img" alt="Some image">
+                        <p>{{cartItem.product_name}}</p>
+                        <div class="counter">{{cartItem.quantity}}</div>
+                    <p class="product-price">$ {{cartItem.quantity*cartItem.price}}</p>
+                    <button @click="$emit('remove', cartItem)">&times;</button>
+            </div>`
+};
+
+export const cart = {
   data() {
     return {
       showCart: false,
@@ -6,6 +17,9 @@ Vue.component('cart', {
       imgCart: 'img/default.png',
       cartItems: []
     }
+  },
+  components: {
+    'cart-item': cartItem
   },
   methods: {
     addProduct(product) {
@@ -65,15 +79,4 @@ Vue.component('cart', {
                      @remove="remove"></cart-item>   
                 </div>
             </div>`
-});
-
-Vue.component('cart-item', {
-    props: ['cartItem', 'img'],
-    template: `<div class="cart-item">
-                    <img :src="img" alt="Some image">
-                        <p>{{cartItem.product_name}}</p>
-                        <div class="counter">{{cartItem.quantity}}</div>
-                    <p class="product-price">$ {{cartItem.quantity*cartItem.price}}</p>
-                    <button @click="$emit('remove', cartItem)">&times;</button>
-            </div>`
-});
+};
