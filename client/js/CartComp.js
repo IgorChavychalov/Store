@@ -28,16 +28,21 @@ Vue.component('cart', {
       }
     },
     remove(product) {
-      this.$parent.getJson(`${API}/deleteFromBasket.json`)
-        .then(data => {
-          if(data.result){
-            if(product.quantity > 1){
+      if(product.quantity > 1) {
+        this.$parent.putJson(`/api/cart/${product.id_product}`, {quantity: -1})
+          .then(data => {
+            if(data.result){
               product.quantity--;
-            } else {
+            }
+          })
+      } else {
+        this.$parent.deleteJson(`/api/cart/${product.id_product}`)
+          .then(data => {
+            if(data.result){
               this.cartItems.splice(this.cartItems.indexOf(product), 1);
             }
-          }
-        })
+          })
+      }
     },
   },
   mounted() {
