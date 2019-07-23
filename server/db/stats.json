@@ -68,5 +68,60 @@
         "prod_name": "Gamepad",
         "action": "remove",
         "time": "July 23rd 2019, 6:47:38 pm"
+    },
+    {
+        "prod_name": "Мышка",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:04 pm"
+    },
+    {
+        "prod_name": "Мышка",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:05 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:06 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:06 pm"
+    },
+    {
+        "prod_name": "Gamepad",
+        "action": "add",
+        "time": "July 23rd 2019, 7:31:07 pm"
+    },
+    {
+        "prod_name": "Gamepad",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:07 pm"
+    },
+    {
+        "prod_name": "Gamepad",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:08 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:09 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:10 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:10 pm"
+    },
+    {
+        "prod_name": "Ноутбук",
+        "action": "change",
+        "time": "July 23rd 2019, 7:31:10 pm"
     }
 ]
