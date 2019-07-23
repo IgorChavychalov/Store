@@ -2,12 +2,17 @@
   border: 2px solid #707070;
   padding: 8px 16px 8px 16px;
   display: flex;
+  justify-content: space-between;
 }
 
 .btn {
   border: 2px solid #707070;
   background-color: white;
   border-radius: 10px 10px 10px 10px;
+}
+
+.btn-cart {
+  margin-left: auto;
 }
 
 .cart-btn {
@@ -35,9 +40,17 @@
   padding-left: 0px;
 }
 
+.open-btn {
+  width: 300px;
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .counter {
+  margin-right: 6px;
   font-size: 18px;
-  width: 30px;
+  width: 60px;
   height: 30px;
   border-radius: 50%;
   border: 2px solid #d8b415;
@@ -77,4 +90,17 @@
 .product-item img {
   height: 140px;
   width: 140px;
+}
+
+.error-msg {
+    border: 2px solid #707070;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+    margin-right: 30%;
+    margin-left: 30%;
+    height: 100px;
+    font-size: 18px;
+    color: yellow;
+    background-color: red;
+    line-height: 60px;
 }
