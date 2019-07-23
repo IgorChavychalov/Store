@@ -12,7 +12,7 @@ const app = new Vue({
     postJson(url, data) {
       return fetch(url, {
         method: 'POST',
-        header: {
+        headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
@@ -23,7 +23,7 @@ const app = new Vue({
     putJson(url, data) {
       return fetch(url, {
         method: 'PUT',
-        header: {
+        headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)

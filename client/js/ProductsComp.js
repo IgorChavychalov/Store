@@ -23,12 +23,8 @@ Vue.component('products', {
       });
   },
   template: `<div class="products">
-         <product 
-         v-for="el of filtered" 
-         :key="el.id_product"
-         :product="el"
-         :img="imgCatalog"></product>
-    </div>`
+                <product v-for="el of filtered" :key="el.id_product" :product="el" :img="imgCatalog"></product>
+            </div>`
 });
 
 Vue.component('product', {
